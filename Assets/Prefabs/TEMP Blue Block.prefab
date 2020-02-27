@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1668912418576274222}
   - component: {fileID: 5523836394666601905}
   m_Layer: 0
-  m_Name: TEMP Green Block
+  m_Name: TEMP Blue Block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0, g: 1, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -94,5 +94,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 936362cf2b9e86340bc16d1a88c701f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockColor: 0
+  blockColor: 1
   fallSpeed: 0.1
