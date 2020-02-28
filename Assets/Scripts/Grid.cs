@@ -46,7 +46,7 @@ public class Grid{
         return new Vector2Int(x, y);
     }
 
-    public Vector3 GetWorldPosition(int x, int y){
+    private Vector3 GetWorldPosition(int x, int y){
         return new Vector3(x, y) * cellSize + originalPosition;
     }
 
@@ -54,7 +54,7 @@ public class Grid{
         return IsWithingGrid(coordinates.x, coordinates.y);
     }
 
-    public bool IsWithingGrid(int x, int y){
+    private bool IsWithingGrid(int x, int y){
         return x >= 0 && y >= 0 && x < width && y < height;
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Block : MonoBehaviour {
     [SerializeField] private BlockColor blockColor;
@@ -8,18 +7,19 @@ public class Block : MonoBehaviour {
     private SpriteRenderer spriteRenderer;
     private SpriteRenderer SpriteRenderer{
         get {
-            if(spriteRenderer == null) {
-                spriteRenderer = GetComponent<SpriteRenderer>();
-                originalColor = spriteRenderer.color;
-            }
+            if (spriteRenderer != null)
+                return spriteRenderer;
+
+            spriteRenderer = GetComponent<SpriteRenderer>();
+            originalColor = spriteRenderer.color;
 
             return spriteRenderer;
         }
     }
     
-    private Vector3 position;
-    private float moveLerp;
     private Color originalColor;
+    private Vector3 positionToMoveTo;
+    private float moveLerpValueHolder;
     private BlockState blockState;
     
     private void Update() {
@@ -27,18 +27,18 @@ public class Block : MonoBehaviour {
             return;
         }
 
-        moveLerp += fallSpeed * Time.deltaTime;
-        transform.position = Vector3.Lerp(transform.position, position, moveLerp);
+        moveLerpValueHolder += fallSpeed * Time.deltaTime;
+        transform.position = Vector3.Lerp(transform.position, positionToMoveTo, moveLerpValueHolder);
 
-        if ((transform.position - position).sqrMagnitude <= 0.05f) {
-            transform.position = position;
-            moveLerp = 0;
+        if ((transform.position - positionToMoveTo).sqrMagnitude <= 0.05f) {
+            transform.position = positionToMoveTo;
+            moveLerpValueHolder = 0;
             blockState = BlockState.Idle;
         }
     }
 
     public void MoveTo(Vector3 position) {
-        this.position = position;
+        this.positionToMoveTo = position;
         blockState = BlockState.Moving;
     }
 
@@ -53,22 +53,14 @@ public class Block : MonoBehaviour {
         SpriteRenderer.color = originalColor;
     }
 
-    public void ReturnToPool(){
-        blockState = BlockState.InPool;
-    }
-
     public void SetDisabled(){
         SpriteRenderer.color = originalColor;
         SpriteRenderer.enabled = false;
         blockState = BlockState.Disabled;
     }
 
-    public bool IsInPool(){
-        return blockState == BlockState.InPool;
-    }
-    
     public bool IsDisabled(){
-        return blockState != BlockState.Disabled;
+        return blockState == BlockState.Disabled;
     }
 
     public void SetEnabled(){
