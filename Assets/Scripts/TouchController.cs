@@ -2,12 +2,12 @@
 
 public class TouchController : MonoBehaviour {
     private Camera myCamera;
-    private GridController gridController;
+    private GameController gameController;
     private bool isSwiping;
     
     private void Start() {
         myCamera = Camera.main;
-        gridController = FindObjectOfType<GridController>();
+        gameController = FindObjectOfType<GameController>();
     }
 
     private void Update() {
@@ -27,10 +27,10 @@ public class TouchController : MonoBehaviour {
 
     private void Swiping() {
         Vector3 mousePosition = myCamera.ScreenToWorldPoint(Input.mousePosition);
-        gridController.SweepOverBlock(mousePosition);
+        gameController.SweepOverBlock(mousePosition);
     }
 
     private void SwipeEnd() {
-        gridController.SweepEnd();
+        gameController.SweepEnd();
     }
 }

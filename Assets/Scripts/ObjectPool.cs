@@ -20,7 +20,7 @@ public class ObjectPool : MonoBehaviour{
             blocksDictionary[(BlockColor) i] = new List<Block>();
         }
         
-        GridController grid = FindObjectOfType<GridController>();
+        GameController grid = FindObjectOfType<GameController>();
         int spawnAmount = grid ? grid.GetWidth() * grid.GetHeight() : 25;
 
         ExpandPool(spawnAmount);
@@ -36,8 +36,8 @@ public class ObjectPool : MonoBehaviour{
             for(int i = 0; i < listLength; i++) {
                 Block block = blocksDictionary[color][i];
 
-                if(!block.gameObject.activeInHierarchy) {
-                    block.gameObject.SetActive(true);
+                if(block.IsInPool()) {
+                    block.SetEnabled();
                     return block;
                 }
             }
@@ -53,14 +53,14 @@ public class ObjectPool : MonoBehaviour{
         for(int i = 0; i < prefabsLength; i++) {
             for(int q = 0; q < spawnAmount; q++) {
                 Block block = Instantiate(blockPrefabs[i], transform);
-                block.gameObject.SetActive(false);
+                block.SetDisabled();
+                block.ReturnToPool();
                 blocksDictionary[block.GetBlockColor()].Add(block);
             }
         }
     }
 
     public void ReturnToPool(Block block){
-        block.Reset();
-        block.gameObject.SetActive(false);
+        block.ReturnToPool();
     }
 }

@@ -12,8 +12,8 @@
           <e p="Enums" t="Include">
             <e p="PublicEnums.cs" t="Include" />
           </e>
+          <e p="GameController.cs" t="Include" />
           <e p="Grid.cs" t="Include" />
-          <e p="GridController.cs" t="Include" />
           <e p="ObjectPool.cs" t="Include" />
           <e p="TouchController.cs" t="Include" />
         </e>

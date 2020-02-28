@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(BlockController))]
-public class GridController : MonoBehaviour{
-    private Grid grid;
+public class GameController : MonoBehaviour{
     private BlockController blockController;
     private List<Vector2Int> selectedBlocks = new List<Vector2Int>();
     private BlockColor colorInUse;
@@ -17,19 +15,17 @@ public class GridController : MonoBehaviour{
 
     private void Start(){
         blockController = GetComponent<BlockController>();
-        blockController.Init(width, height, cellSize);
-        Vector3 gridPosition = transform.position - new Vector3(width * 0.5f, height * 0.5f);
-        grid = new Grid(width, height, cellSize, gridPosition);
-        PopulateBoard();
+        blockController.Init(width, height, cellSize, transform.position, spawnOffset);
     }
 
     // TODO: Hard to navigate. Maybe make box smaller
     public void SweepOverBlock(Vector3 position){
-        Vector2Int coordinates = grid.GetXY(position);
+        Vector2Int coordinates = blockController.GetXY(position);
 
-        if(!grid.IsWithingGrid(coordinates)) {
+        if(!blockController.IsWithingGrid(coordinates)) {
             return;
         }
+
 
         if(selectedBlocks.Count == 0) {
             colorInUse = blockController.GetBlockColor(coordinates);
@@ -52,7 +48,7 @@ public class GridController : MonoBehaviour{
             return;
         }
 
-        if(grid.IsAdjacentTo(coordinates, selectedBlocks[selectedBlocks.Count - 1]) &&
+        if(blockController.IsAdjacentTo(coordinates, selectedBlocks[selectedBlocks.Count - 1]) &&
            blockController.CanBeSelected(coordinates, colorInUse)) {
             SelectBlock(coordinates);
         }
@@ -77,20 +73,12 @@ public class GridController : MonoBehaviour{
             return;
         }
 
-        blockController.DeleteBlockAll(selectedBlocks.ToArray());
+        blockController.DeleteBlocksAll(selectedBlocks.ToArray());
         blockController.MoveBlocksDown(selectedBlocks.ToArray());
         blockController.RepopulateBoard(selectedBlocks.ToArray());
+        blockController.ReturnBlocksToPool();
         selectedBlocks = new List<Vector2Int>();
-    }
-    
-    private void PopulateBoard(){
-        Vector3 offset = new Vector3(cellSize * 0.5f, cellSize * 0.5f);
-        for(int x = 0; x < width; x++) {
-            for(int y = 0; y < height; y++) {
-                blockController.SpawnBlock(grid.GetWorldPosition(x, y) + offset, x, y);
-            }
-        }
-    }
+         }
 
     public int GetWidth(){
         return width;

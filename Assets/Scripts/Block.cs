@@ -4,19 +4,24 @@ using UnityEngine;
 public class Block : MonoBehaviour {
     [SerializeField] private BlockColor blockColor;
     [SerializeField] private float fallSpeed = 0.1f;
-    
+
     private SpriteRenderer spriteRenderer;
+    private SpriteRenderer SpriteRenderer{
+        get {
+            if(spriteRenderer == null) {
+                spriteRenderer = GetComponent<SpriteRenderer>();
+                originalColor = spriteRenderer.color;
+            }
+
+            return spriteRenderer;
+        }
+    }
     
     private Vector3 position;
     private float moveLerp;
     private Color originalColor;
     private BlockState blockState;
-
-    private void Start(){
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        originalColor = spriteRenderer.color;
-    }
-
+    
     private void Update() {
         if (blockState != BlockState.Moving) {
             return;
@@ -37,40 +42,42 @@ public class Block : MonoBehaviour {
         blockState = BlockState.Moving;
     }
 
-    public void MoveDownOneUnit(){
-        position -= new Vector3(0, 1);
-        blockState = BlockState.Moving;
-    }
-
     // TODO: Do an animation or something other
     public void Select(){
         blockState = BlockState.Selected;
-        spriteRenderer.color = Color.black;
+        SpriteRenderer.color = Color.black;
     }
 
     public void UnSelect(){
         blockState = BlockState.Idle;
-        spriteRenderer.color = originalColor;
+        SpriteRenderer.color = originalColor;
     }
 
-    public bool CanBeMoved(){
-        return blockState == BlockState.Idle;
+    public void ReturnToPool(){
+        blockState = BlockState.InPool;
     }
 
     public void SetDisabled(){
+        SpriteRenderer.color = originalColor;
+        SpriteRenderer.enabled = false;
         blockState = BlockState.Disabled;
     }
-    
-    public bool Disabled(){
-        return blockState == BlockState.Disabled;
+
+    public bool IsInPool(){
+        return blockState == BlockState.InPool;
     }
     
-    public bool CanBeSwipedOver(BlockColor blockColor){
-        return this.blockColor == blockColor && blockState == BlockState.Idle;
+    public bool IsDisabled(){
+        return blockState != BlockState.Disabled;
     }
 
-    public void Reset(){
-        UnSelect();
+    public void SetEnabled(){
+        blockState = BlockState.Idle;
+        SpriteRenderer.enabled = true;
+    }
+    
+    public bool CanBeSelected(BlockColor blockColor){
+        return this.blockColor == blockColor && blockState == BlockState.Idle;
     }
 
     public BlockColor GetBlockColor(){
