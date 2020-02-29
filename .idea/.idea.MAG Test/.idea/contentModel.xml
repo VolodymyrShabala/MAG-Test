@@ -20,6 +20,7 @@
           </e>
           <e p="GameController.cs" t="Include" />
           <e p="Grid.cs" t="Include" />
+          <e p="GridAdjustment.cs" t="Include" />
           <e p="ObjectPool.cs" t="Include" />
           <e p="TouchController.cs" t="Include" />
         </e>

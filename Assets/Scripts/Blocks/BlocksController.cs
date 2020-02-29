@@ -36,6 +36,12 @@ public class BlocksController : MonoBehaviour{
         }
     }
 
+    public void SetBlockToType(BlockType blockType, Vector2Int position) {
+        if (position.x >= 0 && position.x < width && position.y >= 0 && position.y < height) {
+            blocksArray[position.x, position.y].blockType = blockType;
+        }
+    }
+
     public void Select(Vector2Int block) {
         blocksArray[block.x, block.y].Select();
     }
