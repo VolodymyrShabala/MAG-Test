@@ -39,12 +39,12 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Blocks/Special blocks/BlockBomb.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/TouchController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Enums/PublicEnums.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Blocks/Special blocks/BombSpawner.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Blocks/Special blocks/Bomb.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ObjectPool.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Blocks/Block.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Blocks/Special blocks/BombSpawner.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Blocks/BlocksController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Blocks/Special blocks/Bomb.cs" />
       </list>
     </option>
   </component>
@@ -93,9 +93,9 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="1920" y="0" width="1553" height="1027" key="dock-window-1/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1582643783255" />
-    <state x="623" y="225" key="search.everywhere.popup" timestamp="1582901028935">
+    <state x="623" y="225" key="search.everywhere.popup" timestamp="1582998137045">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1582901028935" />
+    <state x="623" y="225" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1582998137045" />
   </component>
 </project>

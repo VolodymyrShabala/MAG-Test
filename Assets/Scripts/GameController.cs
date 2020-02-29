@@ -19,9 +19,9 @@ public class GameController : MonoBehaviour {
     
     private void Start() {
         Vector3 position = transform.position - new Vector3(width, height) * 0.5f;
-        // blocksController = FindObjectOfType<BlocksController>();
-        // blocksController.Init(width, height, cellSize, position, spawnOffset);
-        blocksController = new BlocksController(width, height, cellSize, position, spawnOffset);
+        blocksController = FindObjectOfType<BlocksController>();
+        blocksController.Init(width, height, cellSize, position, spawnOffset);
+        // blocksController = new BlocksController(width, height, cellSize, position, spawnOffset);
         grid = new Grid(width, height, cellSize, position);
     }
 

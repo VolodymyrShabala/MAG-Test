@@ -2,9 +2,22 @@
 
 public class Bomb : MonoBehaviour {
     public BombDirection bombDirection;
-    [SerializeField] private Sprite spriteVisualization;
 
     private void OnEnable() {
         GetComponentInParent<Block>().blockType = BlockType.Bomb;
+
+        switch (bombDirection) {
+            case BombDirection.Horizontal:
+                break;
+            case BombDirection.Vertical:
+                transform.rotation = Quaternion.Euler(0, 90, 0);
+                break;
+        }
+
+        transform.localPosition = Vector3.zero;
+    }
+
+    private void OnDisable() {
+        Destroy(gameObject);
     }
 }

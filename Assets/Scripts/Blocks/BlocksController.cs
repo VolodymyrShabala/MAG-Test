@@ -2,17 +2,17 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class BlocksController {
-    private readonly Block[,] blocksArray;
+public class BlocksController : MonoBehaviour{
+    private Block[,] blocksArray;
 
-    private readonly int width;
-    private readonly int height;
-    private readonly float cellSize;
-    private readonly float spawnOffset;
-    private readonly Vector3 positionCorrection;
-    private readonly Vector3 originalPosition;
+    private int width;
+    private int height;
+    private float cellSize;
+    private float spawnOffset;
+    private Vector3 positionCorrection;
+    private Vector3 originalPosition;
 
-    public BlocksController(int width, int height, float cellSize, Vector3 originalPosition, float spawnOffset) {
+    public void Init(int width, int height, float cellSize, Vector3 originalPosition, float spawnOffset) {
         this.width = width;
         this.height = height;
         this.cellSize = cellSize;
@@ -24,16 +24,15 @@ public class BlocksController {
         PopulateBoard();
     }
 
-    public void AddBomb(int x, int y) {
-        blocksArray[x, y].gameObject.AddComponent<Bomb>();
-    }
+    public void AddBombRandom(GameObject bomb) {
+        while (true) {
+            int x = Random.Range(0, width);
+            int y = Random.Range(0, height);
 
-    public void AddBombRandom() {
-        int x = Random.Range(0, width);
-        int y = Random.Range(0, height);
-
-        if (!blocksArray[x, y].IsDisabled()) {
-            blocksArray[x, y].gameObject.AddComponent<Bomb>();
+            if (!blocksArray[x, y].IsDisabled()) {
+                Instantiate(bomb, blocksArray[x, y].transform);
+                break;
+            } 
         }
     }
 
