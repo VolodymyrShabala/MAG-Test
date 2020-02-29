@@ -2,7 +2,7 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class BlocksController{
+public class BlocksController {
     private readonly Block[,] blocksArray;
 
     private readonly int width;
@@ -25,7 +25,7 @@ public class BlocksController{
     }
 
     public void AddBomb(int x, int y) {
-        blocksArray[x, y].gameObject.AddComponent<BlockBomb>();
+        blocksArray[x, y].gameObject.AddComponent<Bomb>();
     }
 
     public void AddBombRandom() {
@@ -33,7 +33,7 @@ public class BlocksController{
         int y = Random.Range(0, height);
 
         if (!blocksArray[x, y].IsDisabled()) {
-            blocksArray[x, y].gameObject.AddComponent<BlockBomb>();
+            blocksArray[x, y].gameObject.AddComponent<Bomb>();
         }
     }
 
@@ -64,16 +64,51 @@ public class BlocksController{
 
         for (int i = 0; i < arrayLength; i++) {
             blocksArray[blocks[i].x, blocks[i].y].SetDisabled();
+            CheckBomb(blocks[i].x, blocks[i].y);
         }
+    }
+
+    private void CheckBomb(int x, int y) {
+        if (blocksArray[x, y].blockType != BlockType.Bomb) {
+            return;
+        }
+
+        BombDirection bombDirection = blocksArray[x, y].GetComponentInChildren<Bomb>().bombDirection;
+        List<Vector2Int> bombDestroy = new List<Vector2Int>();
+
+        switch (bombDirection) {
+            case BombDirection.Vertical: {
+                for (int i = 0; i < height; i++) {
+                    if (!blocksArray[x, i].IsDisabled() || blocksArray[x, i].IsUnmovable()) {
+                        bombDestroy.Add(new Vector2Int(x, i));
+                    }
+                }
+
+                break;
+            }
+
+            case BombDirection.Horizontal: {
+                for (int i = 0; i < width; i++) {
+                    if (!blocksArray[i, y].IsDisabled() || blocksArray[i, y].IsUnmovable()) {
+                        bombDestroy.Add(new Vector2Int(i, y));
+                    }
+                }
+
+                break;
+            }
+        }
+
+        DisableSweptOverBlocks(bombDestroy.ToArray());
     }
 
     private void MoveBlocksDown() {
         List<Vector2Int> movedBlocks = MoveBlocksDownArray();
-        MoveBlocksDownPhysically(movedBlocks);
+        MoveBlocksDownObject(movedBlocks);
     }
 
     private List<Vector2Int> MoveBlocksDownArray() {
         List<Vector2Int> movedBlocks = new List<Vector2Int>();
+
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height - 1; y++) {
                 if (!blocksArray[x, y].IsDisabled()) {
@@ -88,8 +123,9 @@ public class BlocksController{
         return movedBlocks;
     }
 
-    private void MoveBlocksDownPhysically(List<Vector2Int> movedBlocks) {
+    private void MoveBlocksDownObject(List<Vector2Int> movedBlocks) {
         int movedBLockLength = movedBlocks.Count;
+
         for (int i = 0; i < movedBLockLength; i++) {
             if (blocksArray[movedBlocks[i].x, movedBlocks[i].y].IsDisabled()) {
                 continue;
@@ -102,8 +138,9 @@ public class BlocksController{
 
     private void SwapBlocks(int x, int y) {
         for (int q = y + 1; q < height; q++) {
-            if (blocksArray[x, q].IsDisabled())
+            if (blocksArray[x, q].IsDisabled() || blocksArray[x, q].IsUnmovable()) {
                 continue;
+            }
 
             Block tempBlock = blocksArray[x, y];
             blocksArray[x, y] = blocksArray[x, q];
@@ -119,8 +156,9 @@ public class BlocksController{
     private void RepopulateBoard() {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                if (!blocksArray[x, y].IsDisabled())
+                if (!blocksArray[x, y].IsDisabled() || blocksArray[x, y].IsUnmovable()) {
                     continue;
+                }
 
                 Vector3 position = GetWorldPosition(x, y) + positionCorrection;
                 ReturnBlocksToPool(x, y);

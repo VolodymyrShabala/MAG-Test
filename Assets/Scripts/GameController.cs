@@ -32,23 +32,25 @@ public class GameController : MonoBehaviour {
             return;
         }
 
+        // If none selected, select the first one
         if (selectedBlocks.Count == 0) {
             colorInUse = blocksController.GetBlockColor(coordinates);
             SelectBlock(coordinates);
             return;
         }
 
+        // If the same as last element
         if (selectedBlocks[selectedBlocks.Count - 1] == coordinates) {
             return;
         }
 
+        // If next to last element, remove last selected
         if (selectedBlocks.Contains(coordinates)) {
-            int index = selectedBlocks.IndexOf(coordinates);
-            int listLength = selectedBlocks.Count;
 
-            for (int i = index; i < listLength; i++) {
-                UnSelectBlock(selectedBlocks[index]);
+            if (selectedBlocks[selectedBlocks.Count - 2] == coordinates) {
+                UnSelectBlock(selectedBlocks[selectedBlocks.Count - 1]);
             }
+
             return;
         }
 
@@ -71,14 +73,15 @@ public class GameController : MonoBehaviour {
     public void SweepEnd() {
         colorInUse = BlockColor.MAX;
 
-        if (selectedBlocks.Count < amountOfSelectedBlocksToDestroy) {
+        int listCount = selectedBlocks.Count;
+        if (listCount < amountOfSelectedBlocksToDestroy) {
             blocksController.UnselectAll(selectedBlocks.ToArray());
             selectedBlocks = new List<Vector2Int>();
             return;
         }
 
         blocksController.SweepEnd(selectedBlocks.ToArray());
-        // onBlocksDestroy?.Invoke(selectedBlocks.Count);
+        onBlocksDestroy?.Invoke(listCount);
         selectedBlocks = new List<Vector2Int>();
     }
 }

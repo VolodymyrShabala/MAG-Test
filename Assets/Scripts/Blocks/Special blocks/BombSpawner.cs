@@ -17,6 +17,6 @@ public class BombSpawner : MonoBehaviour {
             return;
         }
         
-        // blocksController.AddBomb(1, 1);
+        // blocksController.AddBombRandom();
     }
 }

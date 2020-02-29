@@ -11,35 +11,40 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Blocks/Block.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../HeatMap/Assets/Scripts/Grid2D.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ObjectPool.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Grid.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/BlockBomb.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/BlocksController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/BombSpawner.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enums/PublicEnums.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Blocks/Special blocks/Bomb.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Tower-Defence GitHub/Assets/Scripts/Object Pooling/ObjectManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Tower-Defence GitHub/Assets/Scripts/Object Pooling/ObjectPoolingManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/TouchController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Block.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Blocks/Special blocks/BombSpawner.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enums/PublicEnums.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Blocks/BlocksController.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/BlockSpawner.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/TouchController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GridController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Grid.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BlockController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Block.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GridModification.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Enums/PublicEnums.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BlockBomb.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BombSpawner.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BlocksController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Blocks/Special blocks/BlockBomb.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/TouchController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Enums/PublicEnums.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Blocks/Special blocks/BombSpawner.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Blocks/Special blocks/Bomb.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ObjectPool.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Blocks/Block.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Blocks/BlocksController.cs" />
       </list>
     </option>
   </component>
