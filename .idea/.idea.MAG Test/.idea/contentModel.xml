@@ -4,24 +4,32 @@
     <e p="C:\Users\Tom\.Rider2019.3\system\extResources" t="IncludeRecursive" />
     <e p="C:\Users\Tom\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_MAG Test.-847380623.00" t="ExcludeRecursive" />
     <e p="E:\For Unity\MAG Test" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="LevelTextFiles" t="Include">
+          <e p="Level1.txt" t="Include" />
+        </e>
         <e p="Scripts" t="Include">
-          <e p="Blocks" t="Include">
-            <e p="Block.cs" t="Include" />
-            <e p="BlocksController.cs" t="Include" />
-            <e p="Special blocks" t="Include">
-              <e p="Bomb.cs" t="Include" />
-              <e p="BombSpawner.cs" t="Include" />
-            </e>
-          </e>
+          <e p="Block.cs" t="Include" />
+          <e p="BlocksController.cs" t="Include" />
+          <e p="Bomb.cs" t="Include" />
+          <e p="BombSpawner.cs" t="Include" />
           <e p="Enums" t="Include">
             <e p="PublicEnums.cs" t="Include" />
           </e>
           <e p="GameController.cs" t="Include" />
+          <e p="Grid Builder" t="Include">
+            <e p="Editor" t="Include">
+              <e p="GridBuilderEditor.cs" t="Include" />
+            </e>
+            <e p="GridBuilder.cs" t="Include" />
+          </e>
           <e p="Grid.cs" t="Include" />
-          <e p="GridAdjustment.cs" t="Include" />
-          <e p="ObjectPool.cs" t="Include" />
+          <e p="LevelLoader.cs" t="Include" />
+          <e p="LevelReader" t="Include">
+            <e p="FileReader.cs" t="Include" />
+          </e>
           <e p="TouchController.cs" t="Include" />
         </e>
       </e>

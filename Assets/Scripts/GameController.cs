@@ -3,85 +3,105 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameController : MonoBehaviour {
-    private BlocksController blocksController;
-    private Grid grid;
-    private List<Vector2Int> selectedBlocks = new List<Vector2Int>();
-    private BlockColor colorInUse;
-
-    [SerializeField] private int width = 5;
-    [SerializeField] private int height = 5;
-    [SerializeField] private float cellSize = 1;
-    [Tooltip("How many blocks are needed to be selected for them to be counted")]
+    [SerializeField] private BlocksController blocksController;
+    private List<Block> selectedBlocks = new List<Block>();
+    private BlockType blockInUse;
     [SerializeField] private int amountOfSelectedBlocksToDestroy = 3;
-    [SerializeField] private float spawnOffset = 1;
-    
+
     public Action<int> onBlocksDestroy;
     
     private void Start() {
-        Vector3 position = transform.position - new Vector3(width, height) * 0.5f;
-        blocksController = FindObjectOfType<BlocksController>();
-        blocksController.Init(width, height, cellSize, position, spawnOffset);
-        // blocksController = new BlocksController(width, height, cellSize, position, spawnOffset);
-        grid = new Grid(width, height, cellSize, position);
-    }
+        if (!blocksController) {
+            blocksController = FindObjectOfType<BlocksController>();
 
-    public void SweepOverBlock(Vector3 position) {
-        Vector2Int coordinates = grid.GetXY(position);
-
-        if (!grid.IsWithingGrid(coordinates)) {
-            return;
-        }
-
-        // If none selected, select the first one
-        if (selectedBlocks.Count == 0) {
-            colorInUse = blocksController.GetBlockColor(coordinates);
-            SelectBlock(coordinates);
-            return;
-        }
-
-        // If the same as last element
-        if (selectedBlocks[selectedBlocks.Count - 1] == coordinates) {
-            return;
-        }
-
-        // If next to last element, remove last selected
-        if (selectedBlocks.Contains(coordinates)) {
-
-            if (selectedBlocks[selectedBlocks.Count - 2] == coordinates) {
-                UnSelectBlock(selectedBlocks[selectedBlocks.Count - 1]);
+            if (!blocksController) {
+                Debug.LogError($"Block controller is not assigned in {name}.");
+                return;
             }
+        }
+    }
 
+    public void SweepOverBlock(Block block) {
+        if (IsListEmpty()) {
+            AddFirstElement(block);
             return;
         }
 
-        if (grid.IsAdjacentTo(coordinates, selectedBlocks[selectedBlocks.Count - 1]) &&
-            blocksController.CanBeSelected(coordinates, colorInUse)) {
-            SelectBlock(coordinates);
+        if (IsTheLastElement(block)) {
+            return;
+        }
+
+        if (IsInTheList(block)) {
+            if (IsNextToLastElement(block)) {
+                RemoveLastSelected();
+            }
+        }
+
+        if (!IsAdjacentToLastBlock(block)) {
+            return;
+        }
+
+        if (block.CanBeSelected(blockInUse)) {
+            SelectBlock(block);
         }
     }
-
-    private void SelectBlock(Vector2Int coordinates) {
-        blocksController.Select(coordinates);
-        selectedBlocks.Add(coordinates);
+    
+    private void SelectBlock(Block block) {
+        block.Select();
+        selectedBlocks.Add(block);
     }
 
-    private void UnSelectBlock(Vector2Int coordinates) {
-        blocksController.Unselect(coordinates);
-        selectedBlocks.Remove(coordinates);
+    private void DeselectBlock(Block block) {
+        block.Deselect();
+        selectedBlocks.Remove(block);
     }
 
     public void SweepEnd() {
-        colorInUse = BlockColor.MAX;
+        blockInUse = BlockType.MAX;
 
         int listCount = selectedBlocks.Count;
         if (listCount < amountOfSelectedBlocksToDestroy) {
-            blocksController.UnselectAll(selectedBlocks.ToArray());
-            selectedBlocks = new List<Vector2Int>();
+            for (int i = 0; i < listCount; i++) {
+                selectedBlocks[i].Deselect();
+            }
+            selectedBlocks = new List<Block>();
             return;
         }
 
-        blocksController.SweepEnd(selectedBlocks.ToArray());
+        blocksController.SweepEnd(selectedBlocks);
         onBlocksDestroy?.Invoke(listCount);
-        selectedBlocks = new List<Vector2Int>();
+        selectedBlocks = new List<Block>();
+    }
+    
+    private bool IsListEmpty() {
+        return selectedBlocks.Count == 0;
+    }
+
+    private void AddFirstElement(Block block) {
+        blockInUse = block.GetBlockType();
+        SelectBlock(block);
+    }
+
+    private bool IsTheLastElement(Block block) {
+        return selectedBlocks[selectedBlocks.Count - 1] == block;
+    }
+
+    private bool IsInTheList(Block block) {
+        return selectedBlocks.Contains(block);
+    }
+
+    private bool IsNextToLastElement(Block block) {
+        int blockIndex = selectedBlocks.IndexOf(block);
+        return blockIndex == selectedBlocks.Count - 2;
+    }
+
+    private void RemoveLastSelected() {
+        DeselectBlock(selectedBlocks[selectedBlocks.Count - 1]);
+    }
+    
+    private bool IsAdjacentToLastBlock(Block block) {
+        Vector3 blockPosition = block.transform.position;
+        Vector3 neighbourBlockPosition = selectedBlocks[selectedBlocks.Count - 1].transform.position;
+        return Mathf.Abs(Vector3.Distance(blockPosition, neighbourBlockPosition)) <= 1.5f;
     }
 }

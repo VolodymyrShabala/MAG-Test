@@ -3,8 +3,8 @@
 public class TouchController : MonoBehaviour {
     private Camera myCamera;
     private GameController gameController;
-    private bool isSwiping;
-    
+    private bool isSweeping;
+
     private void Start() {
         myCamera = Camera.main;
         gameController = FindObjectOfType<GameController>();
@@ -12,25 +12,37 @@ public class TouchController : MonoBehaviour {
 
     private void Update() {
         if (Input.GetMouseButtonDown(0)) {
-            isSwiping = true;
+            isSweeping = true;
         }
 
         if (Input.GetMouseButtonUp(0)) {
-            isSwiping = false;
-            SwipeEnd();
+            isSweeping = false;
+            SweepEnd();
         }
 
-        if (isSwiping) {
+        if (isSweeping) {
             Swiping();
         }
     }
 
     private void Swiping() {
         Vector3 mousePosition = myCamera.ScreenToWorldPoint(Input.mousePosition);
-        gameController.SweepOverBlock(mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+
+        if (!hit.collider) {
+            return;
+        }
+
+        Block block = hit.collider.GetComponent<Block>();
+
+        if (!block) {
+            return;
+        }
+
+        gameController.SweepOverBlock(block);
     }
 
-    private void SwipeEnd() {
+    private void SweepEnd() {
         gameController.SweepEnd();
     }
 }

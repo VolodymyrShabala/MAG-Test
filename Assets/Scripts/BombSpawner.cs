@@ -18,6 +18,6 @@ public class BombSpawner : MonoBehaviour {
             return;
         }
         
-        blocksController.AddBombRandom(bombPrefab);
+        // blocksController.AddBombRandom(bombPrefab);
     }
 }
