@@ -72,12 +72,12 @@ public class FileReader {
         int yLength = level.GetLength(1);
 
         for (int x = 0; x < xLength; x++) {
-            for (int y = 0; y < yLength; y++) {
+            for (int y = yLength - 1; y >= 0; y--) {
                 string coma = ",";
 
-                if (y == yLength - 1) {
-                    coma = "";
-                }
+                // if (y == 1) {
+                //     coma = "";
+                // }
 
                 content += $"{level[x, y]}" + coma;
             }

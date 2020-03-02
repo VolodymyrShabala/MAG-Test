@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -18,15 +19,17 @@ public class BlocksController : MonoBehaviour {
     private Vector3 originalPosition;
 
     private List<Block> savedBlockForReuse = new List<Block>();
+    private BoardState boardState;
 
     private void Start() {
         int[,] level = new int[width, height];
+
         if (loadLevelTXT) {
             level = FileReader.ReadLevel(loadLevelTXT);
             width = level.GetLength(0);
             height = level.GetLength(1);
         }
-        
+
         originalPosition = transform.position - new Vector3(width, height) * 0.5f;
         positionCorrection = new Vector3(cellSize * 0.5f, cellSize * 0.5f);
         blocksArray = new Block[width, height];
@@ -35,12 +38,27 @@ public class BlocksController : MonoBehaviour {
     }
 
     public void SweepEnd(List<Block> blocks) {
+        if (boardState == BoardState.SpawningNewBlocks) {
+            return;
+        }
+
+        boardState = BoardState.DisablingBlocks;
         SaveSweptOverBlocksForReuse(blocks);
+        StopCoroutine(HandleSweepEnd());
+        StartCoroutine(HandleSweepEnd());
+    }
+
+    private IEnumerator HandleSweepEnd() {
         DisableSweptOverBlocks();
+        print("Coroutine started");
+        yield return new WaitForSeconds(0.1f);
+
+        boardState = BoardState.SpawningNewBlocks;
         MoveBlocksDown();
         RemoveSweptBlocksFromArray();
         RepopulateBoard();
         ResetReusableBlocksList();
+        boardState = BoardState.Waiting;
     }
 
     private void SaveSweptOverBlocksForReuse(List<Block> blocks) {
@@ -188,3 +206,5 @@ public class BlocksController : MonoBehaviour {
         return new Vector3(x, y) * cellSize + originalPosition;
     }
 }
+
+public enum BoardState { Waiting, DisablingBlocks, SpawningNewBlocks }
