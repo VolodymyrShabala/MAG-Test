@@ -7,7 +7,7 @@ public class TouchController : MonoBehaviour {
 
     private void Start() {
         myCamera = Camera.main;
-        gameController = FindObjectOfType<GameController>();
+        // gameController = FindObjectOfType<GameController>();
     }
 
     private void Update() {

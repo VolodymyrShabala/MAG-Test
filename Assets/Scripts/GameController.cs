@@ -1,25 +1,55 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class GameController : MonoBehaviour {
-    [SerializeField] private BlocksController blocksController;
+public class GameController : MonoBehaviour{
+    private BlockCreator blockCreator;
+    private GridController gridController;
+    private Camera myCamera;
+    
     private List<Block> selectedBlocks = new List<Block>();
     private BlockType blockInUse;
-    [Tooltip("How many blocks are needed to be selected for them to be counted")]
-    [SerializeField] private int amountOfSelectedBlocksToDestroy = 3;
-
-    public Action<int> onBlocksDestroy;
+    private int amountOfSelectedBlocksToDestroy;
+    private bool isSweeping;
     
-    private void Start() {
-        if (!blocksController) {
-            blocksController = FindObjectOfType<BlocksController>();
+    public void Init(BlockCreator blockCreator, GridController gridController, int amountOfSelectedBlocksToDestroy) {
+        this.amountOfSelectedBlocksToDestroy = amountOfSelectedBlocksToDestroy;
+        this.blockCreator = blockCreator;
+        this.gridController = gridController;
+        myCamera = Camera.main;
+    }
+    
+    private void Update() {
+        if (Input.GetMouseButtonDown(0)) {
+            isSweeping = true;
+        }
 
-            if (!blocksController) {
-                Debug.LogError($"Block controller is not assigned in {name}.");
-            }
+        if (Input.GetMouseButtonUp(0)) {
+            isSweeping = false;
+            SweepEnd();
+        }
+
+        if (isSweeping) {
+            Swiping();
         }
     }
+    
+    private void Swiping() {
+        Vector3 mousePosition = myCamera.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+
+        if (!hit.collider) {
+            return;
+        }
+
+        Block block = hit.collider.GetComponent<Block>();
+
+        if (!block) {
+            return;
+        }
+
+        SweepOverBlock(block);
+    }
+
 
     public void SweepOverBlock(Block block) {
         if (IsListEmpty()) {
@@ -45,7 +75,7 @@ public class GameController : MonoBehaviour {
             SelectBlock(block);
         }
     }
-    
+
     private void SelectBlock(Block block) {
         block.Select();
         selectedBlocks.Add(block);
@@ -60,19 +90,25 @@ public class GameController : MonoBehaviour {
         blockInUse = BlockType.MAX;
 
         int listCount = selectedBlocks.Count;
+
         if (listCount < amountOfSelectedBlocksToDestroy) {
             for (int i = 0; i < listCount; i++) {
                 selectedBlocks[i].Deselect();
             }
+
             selectedBlocks = new List<Block>();
             return;
         }
 
-        blocksController.SweepEnd(selectedBlocks);
-        onBlocksDestroy?.Invoke(listCount);
+        HandleSweepEnd();
         selectedBlocks = new List<Block>();
     }
-    
+
+    private void HandleSweepEnd() {
+        gridController.HandleSweptBlocks(selectedBlocks);
+        blockCreator.RepopulateBoard(selectedBlocks);
+    }
+
     private bool IsListEmpty() {
         return selectedBlocks.Count == 0;
     }
@@ -81,7 +117,7 @@ public class GameController : MonoBehaviour {
         if (!block.CanBeSelected()) {
             return;
         }
-        
+
         blockInUse = block.GetBlockType();
         SelectBlock(block);
     }
@@ -102,7 +138,7 @@ public class GameController : MonoBehaviour {
     private void RemoveLastSelected() {
         DeselectBlock(selectedBlocks[selectedBlocks.Count - 1]);
     }
-    
+
     private bool IsAdjacentToLastBlock(Block block) {
         Vector3 blockPosition = block.transform.position;
         Vector3 neighbourBlockPosition = selectedBlocks[selectedBlocks.Count - 1].transform.position;

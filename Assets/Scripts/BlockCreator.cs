@@ -2,56 +2,50 @@
 using UnityEngine;
 
 public class BlockCreator {
-    private readonly Map map;
-    private readonly Block blockPrefab;
+    private readonly MapData mapData;
     private readonly Transform parent;
-
-    private readonly float spawnOffset;
     
-    public BlockCreator(Map map, Block blockPrefab, Transform parent, float spawnOffset) {
-        this.map = map;
+    public BlockCreator(MapData mapData, Transform parent) {
+        this.mapData = mapData;
         this.parent = parent;
-        this.blockPrefab = blockPrefab;
-        this.spawnOffset = spawnOffset;
-        
-        PopulateBoard(map.GetMapData());
+
+        PopulateBoard(mapData.GetMapData());
     }
 
     private void PopulateBoard(int[,] levelData) {
-        bool levelLoaded = levelData != null;
-        for (int x = 0; x < map.GetWidth(); x++) {
-            for (int y = 0; y < map.GetHeight(); y++) {
-                SpawnBlock(levelLoaded? levelData[x, y] : Random.Range(0, (int) BlockType.DestructibleObstacle), x, y);
+        for (int x = 0; x < mapData.GetWidth(); x++) {
+            for (int y = 0; y < mapData.GetHeight(); y++) {
+                SpawnBlock(levelData[x, y], x, y);
             }
         }
     }
 
     public void RepopulateBoard(List<Block> blocksToUse) {
-        for (int x = 0; x < map.GetWidth(); x++) {
-            for (int y = 0; y < map.GetHeight(); y++) {
-                if (map.GetBlock(x, y)) {
+        int index = 0;
+        for (int x = 0; x < mapData.GetWidth(); x++) {
+            for (int y = 0; y < mapData.GetHeight(); y++) {
+                if (mapData.GetBlock(x, y)) {
                     continue;
                 }
 
-                SpawnBlock(Random.Range(0, (int) BlockType.DestructibleObstacle), x, y, blocksToUse[0]);
-                blocksToUse.RemoveAt(0);
+                SpawnBlock(Random.Range(0, (int) BlockType.DestructibleObstacle), x, y, blocksToUse[index++]);
             }
         }
     }
 
     private void SpawnBlock(int blockType, int x, int y, Block block = null) {
-        Vector3 gridPosition = map.GetWorldPosition(x, y) + map.GetPositionCorrection();
-        Vector3 spawnPosition = map.GetWorldPosition(x, map.GetHeight()) + map.GetPositionCorrection() + Vector3.up * spawnOffset;
+        Vector3 gridPosition = mapData.GetWorldPosition(x, y) + mapData.GetPositionCorrection();
+        Vector3 spawnPosition = mapData.GetWorldPosition(x, mapData.GetHeight()) + mapData.GetPositionCorrection() + Vector3.up * mapData.GetSpawnOffset();
 
         if (!block) {
-            block = Object.Instantiate(blockPrefab, parent);
+            block = Object.Instantiate(mapData.GetBlockPrefab(), parent);
         }
 
         block.SetEnabled();
         block.transform.position = spawnPosition;
         block.MoveTo(gridPosition);
         block.SetBlockType((BlockType) blockType);
-        map.SetNewBlock(block, x, y);
+        mapData.SetNewBlock(block, x, y);
     }
 
     
