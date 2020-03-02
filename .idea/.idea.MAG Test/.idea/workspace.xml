@@ -15,9 +15,9 @@
     <setting file="file://$PROJECT_DIR$/../HeatMap/Assets/Scripts/Grid2D.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Block.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/MapCreator.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Editor/GridBuilderEditor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Editor/MapBuilderEditor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Grid Builder/GridBuilder.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Grid Builder/MapBuilder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enums/PublicEnums.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../BeatBorn/2019_GP3_Team1/P3_beatBorn/BeatBornSGA/Assets/Scripts/SaveManager/SaveManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ScriptableObject/Scripts/GameConfig.cs" root0="FORCE_HIGHLIGHTING" />
@@ -49,13 +49,11 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Blocks/Block.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Blocks/Special blocks/BombSpawner.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Blocks/BlocksController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Grid Builder/GridBuilder.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Enums/PublicEnums.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Bomb.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/LevelLoader.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Grid Builder/Editor/GridBuilderEditor.cs" />
         <option value="$PROJECT_DIR$/Assets/LevelTextFiles/Level1.txt" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/LevelReader/FileReader.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ScriptableObject/GameConfig.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BlocksController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BootsTrap.cs" />
@@ -70,6 +68,10 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/GameController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Bootstrap.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Block.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Grid Builder/GridBuilder.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Grid Builder/MapBuilder.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/LevelReader/FileReader.cs" />
+        <option value="$PROJECT_DIR$/Assets/Editor/MapBuilderEditor.cs" />
       </list>
     </option>
   </component>

@@ -3,23 +3,23 @@ using UnityEditor;
 
 [CustomEditor(typeof(MapBuilder))]
 public class MapBuilderEditor : Editor {
-    private MapBuilder map;
+    private MapBuilder mapBuilder;
     private int width;
     private int height;
     private float cellSize;
     private Vector3 gridPosition;
 
     private void OnEnable() {
-        map = target as MapBuilder;
-        if (!map) {
+        mapBuilder = target as MapBuilder;
+        if (!mapBuilder) {
             Debug.LogError($"There is something wrong in {name}");
             return;
         }
         
-        width = map.height;
-        height = map.height;
-        cellSize = map.cellSize;
-        gridPosition = map.transform.position;
+        width = mapBuilder.height;
+        height = mapBuilder.height;
+        cellSize = mapBuilder.cellSize;
+        gridPosition = mapBuilder.transform.position;
     }
 
     // Create buttons to load and save levels
@@ -27,11 +27,11 @@ public class MapBuilderEditor : Editor {
         DrawDefaultInspector();
 
         if (GUILayout.Button("Save level")) {
-            map.SaveLevel();
+            mapBuilder.SaveLevel();
         }
 
         if (GUILayout.Button("Load level")) {
-            map.LoadLevel();
+            mapBuilder.LoadLevel();
         }
     }
 
@@ -47,7 +47,7 @@ public class MapBuilderEditor : Editor {
             ChangeBlockType();
         }
 
-        Selection.activeGameObject = map.gameObject;
+        Selection.activeGameObject = mapBuilder.gameObject;
 
         DrawAllBlocks();
     }
@@ -58,7 +58,7 @@ public class MapBuilderEditor : Editor {
 
         for (int i = 0; i < numberOfBlocks; i++) {
             if (GUI.Button(new Rect(10, positionY, 125, 50), $"{(BlockType) i}")) {
-                map.blockType = (BlockType) i;
+                mapBuilder.blockType = (BlockType) i;
             }
 
             positionY += 60;
@@ -70,8 +70,8 @@ public class MapBuilderEditor : Editor {
     private void DrawGrid() {
         Handles.color = Color.red;
 
-        for (int x = 0; x < map.width; x++) {
-            for (int y = 0; y < map.height; y++) {
+        for (int x = 0; x < mapBuilder.width; x++) {
+            for (int y = 0; y < mapBuilder.height; y++) {
                 Handles.DrawLine(GetWorldPosition(x, y, cellSize, gridPosition),
                                  GetWorldPosition(x, y + 1, cellSize, gridPosition));
 
@@ -92,14 +92,18 @@ public class MapBuilderEditor : Editor {
         Vector2Int gridValue = GetXY(mousePosition, cellSize, gridPosition);
 
         if (IsWithingGrid(gridValue.x, gridValue.y, width, height)) {
-            map.levelGrid[gridValue.x, gridValue.y] = (int) map.blockType;
+            mapBuilder.levelGrid[gridValue.x, gridValue.y] = (int) mapBuilder.blockType;
         }
     }
 
     private void DrawAllBlocks() {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                Handles.color = GetBLockColor(map.levelGrid[x, y]);
+                if (mapBuilder.levelGrid == null) {
+                    return;
+                }
+                
+                Handles.color = GetBlockColor(mapBuilder.levelGrid[x, y]);
 
                 Handles.DrawWireCube(GetWorldPosition(x, y, cellSize, gridPosition) + new Vector3(cellSize * 0.5f, cellSize * 0.5f),
                                      Vector3.one);
@@ -107,7 +111,7 @@ public class MapBuilderEditor : Editor {
         }
     }
 
-    private Color GetBLockColor(int value) {
+    private Color GetBlockColor(int value) {
         switch (value) {
             case 0:
                 return Color.green;

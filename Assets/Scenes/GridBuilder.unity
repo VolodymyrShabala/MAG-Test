@@ -233,8 +233,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb4d9b47ad0fdda40a908fc9eada5acc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockType: 2
-  levelFileTXT: {fileID: 4900000, guid: 3b1653bb4d6d99242becbe8333327509, type: 3}
+  blockType: 0
+  levelFileTXT: {fileID: 0}
   width: 5
   height: 5
   cellSize: 2

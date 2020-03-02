@@ -8,7 +8,7 @@
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="Editor" t="Include">
-          <e p="GridBuilderEditor.cs" t="Include" />
+          <e p="MapBuilderEditor.cs" t="Include" />
         </e>
         <e p="LevelTextFiles" t="Include">
           <e p="Level1.txt" t="Include" />
@@ -22,7 +22,7 @@
           </e>
           <e p="GameController.cs" t="Include" />
           <e p="Grid Builder" t="Include">
-            <e p="GridBuilder.cs" t="Include" />
+            <e p="MapBuilder.cs" t="Include" />
           </e>
           <e p="LevelReader" t="Include">
             <e p="FileReader.cs" t="Include" />

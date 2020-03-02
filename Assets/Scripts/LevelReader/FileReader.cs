@@ -36,7 +36,14 @@ public class FileReader {
     }
 
     public static int[,] ReadLevel(string filePath) {
-        string input = File.ReadAllText(filePath);
+        string input;
+        try {
+            input = File.ReadAllText(filePath);
+        } catch {
+            Debug.LogError($"Couldn't read the file {filePath}.");
+            return default;
+        }
+
         string[] lines = input.Split(new[] {'|'}, StringSplitOptions.RemoveEmptyEntries);
 
         int height = lines.Length;
