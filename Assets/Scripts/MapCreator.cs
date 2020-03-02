@@ -6,7 +6,7 @@ public static class MapCreator {
             return GenerateRandomLevel(gameConfig.GetWidth(), gameConfig.GetHeight());
         }
         
-        return FileReader.ReadLevel(gameConfig.GetLevelFile());
+        return LevelReader.ReadLevel(gameConfig.GetLevelFile());
     }
 
     private static int[,] GenerateRandomLevel(int width, int height) {

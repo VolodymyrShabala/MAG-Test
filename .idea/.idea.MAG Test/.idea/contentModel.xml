@@ -25,7 +25,7 @@
             <e p="MapBuilder.cs" t="Include" />
           </e>
           <e p="LevelReader" t="Include">
-            <e p="FileReader.cs" t="Include" />
+            <e p="LevelReader.cs" t="Include" />
           </e>
           <e p="MapController.cs" t="Include" />
           <e p="MapCreator.cs" t="Include" />

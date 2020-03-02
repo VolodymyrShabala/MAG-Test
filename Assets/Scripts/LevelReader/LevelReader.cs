@@ -3,40 +3,14 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 
-public class FileReader {
-    // [MenuItem("Tools/Write file")]
-    // static void WriteString() {
-    //     string path = "Assets/Resources/test.txt";
-    //
-    //     //Write some text to the test.txt file
-    //     StreamWriter writer = new StreamWriter(path, true);
-    //     writer.WriteLine("Test");
-    //     writer.Close();
-    //
-    //     //Re-import the file to update the reference in the editor
-    //     AssetDatabase.ImportAsset(path);
-    //     TextAsset asset = (TextAsset) Resources.Load("test");
-    //
-    //     //Print the text from the file
-    //     Debug.Log(asset.text);
-    // }
-    //
-    // [MenuItem("Tools/Read file")]
-    // static void ReadString() {
-    //     string path = "Assets/Resources/test.txt";
-    //
-    //     //Read the text from directly from the test.txt file
-    //     StreamReader reader = new StreamReader(path);
-    //     Debug.Log(reader.ReadToEnd());
-    //     reader.Close();
-    // }
-
+public class LevelReader {
     public static int[,] ReadLevel(TextAsset file) {
         return ReadLevel(AssetDatabase.GetAssetPath(file));
     }
 
     public static int[,] ReadLevel(string filePath) {
         string input;
+
         try {
             input = File.ReadAllText(filePath);
         } catch {
@@ -57,7 +31,7 @@ public class FileReader {
 
             for (int j = 0; j < width; j++) {
                 if (int.TryParse(numbers[j], out int value)) {
-                    level[j,  (height - 1) - i] = value;
+                    level[j, (height - 1) - i] = value;
                 } else {
                     level[j, i] = -1;
                 }
@@ -91,9 +65,14 @@ public class FileReader {
             if (x == 0) {
                 break;
             }
+
             content += "|\r\n";
         }
 
-        File.WriteAllText(filePath, content);
+        try {
+            File.WriteAllText(filePath, content);
+        } catch {
+            Debug.LogError($"Couldn't open file at {filePath}");
+        }
     }
 }

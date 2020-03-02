@@ -17,10 +17,10 @@ public class MapBuilder : MonoBehaviour {
     }
 
     public void LoadLevel() {
-        levelGrid = FileReader.ReadLevel(levelFileTXT);
+        levelGrid = LevelReader.ReadLevel(levelFileTXT);
     }
     
     public void SaveLevel() {
-        FileReader.WriteLevel(levelFileTXT, levelGrid);
+        LevelReader.WriteLevel(levelFileTXT, levelGrid);
     }
 }
