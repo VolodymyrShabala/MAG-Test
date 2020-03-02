@@ -35,7 +35,6 @@ public class FileReader {
         return ReadLevel(AssetDatabase.GetAssetPath(file));
     }
 
-    // TODO: Inverted
     public static int[,] ReadLevel(string filePath) {
         string input = File.ReadAllText(filePath);
         string[] lines = input.Split(new[] {'|'}, StringSplitOptions.RemoveEmptyEntries);

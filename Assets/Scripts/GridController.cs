@@ -3,20 +3,9 @@ using System.Collections.Generic;
 
 public class GridController {
     private readonly Map map;
-    private readonly Block[,] blocksArray;
-    private readonly int width;
-    private readonly int height;
     
-    private readonly Vector3 positionCorrection;
-
     public GridController(Map map) {
         this.map = map;
-        width = map.GetWidth();
-        height = map.GetHeight();
-        
-        blocksArray = map.GetBlockArray();
-        
-        positionCorrection = map.GetPositionCorrection();
     }
 
     public void HandleSweptBlocks(List<Block> blocks) {
@@ -41,9 +30,9 @@ public class GridController {
     private List<Vector2Int> MoveBlocksDownArrayAndReturnTheirCoordinates() {
         List<Vector2Int> blocksToMoveDown = new List<Vector2Int>();
 
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height - 1; y++) {
-                if (!blocksArray[x, y].IsDisabled()) {
+        for (int x = 0; x < map.GetWidth(); x++) {
+            for (int y = 0; y < map.GetHeight() - 1; y++) {
+                if (!map.GetBlockArray()[x, y].IsDisabled()) {
                     continue;
                 }
 
@@ -58,8 +47,8 @@ public class GridController {
     }
 
     private bool IsThereEnabledBlockAbove(int x, int y) {
-        for (int q = y + 1; q < height; q++) {
-            if (blocksArray[x, q].IsDisabled() || blocksArray[x, q].IsUnmovable()) {
+        for (int q = y + 1; q < map.GetHeight(); q++) {
+            if (map.GetBlockArray()[x, q].IsDisabled() || map.GetBlockArray()[x, q].IsUnmovable()) {
                 continue;
             }
 
@@ -70,14 +59,14 @@ public class GridController {
     }
 
     private void MoveEmptyBlockUpArray(int x, int y) {
-        for (int q = y + 1; q < height; q++) {
-            if (blocksArray[x, q].IsDisabled() || blocksArray[x, q].IsUnmovable()) {
+        for (int q = y + 1; q < map.GetHeight(); q++) {
+            if (map.GetBlockArray()[x, q].IsDisabled() || map.GetBlockArray()[x, q].IsUnmovable()) {
                 continue;
             }
 
-            Block tempBlock = blocksArray[x, y];
-            blocksArray[x, y] = blocksArray[x, q];
-            blocksArray[x, q] = tempBlock;
+            Block tempBlock = map.GetBlockArray()[x, y];
+            map.GetBlockArray()[x, y] = map.GetBlockArray()[x, q];
+            map.GetBlockArray()[x, q] = tempBlock;
             break;
         }
     }
@@ -86,23 +75,23 @@ public class GridController {
         int movedBLockLength = movedBlocks.Count;
 
         for (int i = 0; i < movedBLockLength; i++) {
-            if (blocksArray[movedBlocks[i].x, movedBlocks[i].y].IsDisabled()) {
+            if (map.GetBlockArray()[movedBlocks[i].x, movedBlocks[i].y].IsDisabled()) {
                 continue;
             }
 
-            blocksArray[movedBlocks[i].x, movedBlocks[i].y]
-                    .MoveTo(map.GetWorldPosition(movedBlocks[i].x, movedBlocks[i].y) + positionCorrection);
+            map.GetBlockArray()[movedBlocks[i].x, movedBlocks[i].y]
+                    .MoveTo(map.GetWorldPosition(movedBlocks[i].x, movedBlocks[i].y) + map.GetPositionCorrection());
         }
     }
     
     private void RemoveSweptBlocksFromArray() {
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                if (!blocksArray[x, y].IsDisabled()) {
+        for (int x = 0; x < map.GetWidth(); x++) {
+            for (int y = 0; y < map.GetHeight(); y++) {
+                if (!map.GetBlockArray()[x, y].IsDisabled()) {
                     continue;
                 }
 
-                blocksArray[x, y] = null;
+                map.GetBlockArray()[x, y] = null;
             }
         }
     }

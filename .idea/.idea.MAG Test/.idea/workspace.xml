@@ -52,14 +52,14 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/LevelLoader.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/TouchController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Grid Builder/Editor/GridBuilderEditor.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/BlocksController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Map.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GridController.cs" />
+        <option value="$PROJECT_DIR$/Assets/LevelTextFiles/Level1.txt" />
         <option value="$PROJECT_DIR$/Assets/Scripts/LevelReader/FileReader.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Block.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameController.cs" />
-        <option value="$PROJECT_DIR$/Assets/LevelTextFiles/Level1.txt" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/BlocksController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BlockCreator.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GridController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Map.cs" />
       </list>
     </option>
   </component>

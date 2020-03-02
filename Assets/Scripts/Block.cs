@@ -126,7 +126,10 @@ public class Block : MonoBehaviour {
                 GetComponent<Collider2D>().enabled = false;
                 break;
             default:
-                throw new ArgumentOutOfRangeException(nameof(type), type, null);
+                Debug.LogError("Block received wrong state. Setting it to Green");
+                SpriteRenderer.color = Color.green;
+                blockType = BlockType.Green;
+                break;
         }
 
         originalColor = SpriteRenderer.color;
