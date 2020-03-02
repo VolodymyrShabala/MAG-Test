@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour {
     [SerializeField] private BlocksController blocksController;
     private List<Block> selectedBlocks = new List<Block>();
     private BlockType blockInUse;
+    [Tooltip("How many blocks are needed to be selected for them to be counted")]
     [SerializeField] private int amountOfSelectedBlocksToDestroy = 3;
 
     public Action<int> onBlocksDestroy;
@@ -16,7 +17,6 @@ public class GameController : MonoBehaviour {
 
             if (!blocksController) {
                 Debug.LogError($"Block controller is not assigned in {name}.");
-                return;
             }
         }
     }
@@ -41,7 +41,7 @@ public class GameController : MonoBehaviour {
             return;
         }
 
-        if (block.CanBeSelected(blockInUse)) {
+        if (block.CanBeSelectedWithColor(blockInUse)) {
             SelectBlock(block);
         }
     }
@@ -78,6 +78,10 @@ public class GameController : MonoBehaviour {
     }
 
     private void AddFirstElement(Block block) {
+        if (!block.CanBeSelected()) {
+            return;
+        }
+        
         blockInUse = block.GetBlockType();
         SelectBlock(block);
     }

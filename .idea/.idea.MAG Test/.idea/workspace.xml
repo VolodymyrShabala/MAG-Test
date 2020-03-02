@@ -15,26 +15,23 @@
     <setting file="file://$PROJECT_DIR$/../HeatMap/Assets/Scripts/Grid2D.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Block.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/BlocksController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/BombSpawner.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Grid.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Grid Builder/GridBuilder.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Bomb.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/LevelLoader.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enums/PublicEnums.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../BeatBorn/2019_GP3_Team1/P3_beatBorn/BeatBornSGA/Assets/Scripts/SaveManager/SaveManager.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Grid Builder/Editor/GridBuilderEditor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../BeatBorn/2019_GP3_Team1/P3_beatBorn/BeatBornSGA/Assets/Scripts/SaveManager/SaveData.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GridController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Tower-Defence GitHub/Assets/Scripts/Object Pooling/ObjectManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Tower-Defence GitHub/Assets/Scripts/Object Pooling/ObjectPoolingManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/TouchController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/LevelReader/FileReader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/BlockCreator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Map.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/BlockSpawner.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GridController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BlockController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GridModification.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BlockBomb.cs" />
@@ -49,17 +46,20 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Blocks/Block.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Blocks/Special blocks/BombSpawner.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Blocks/BlocksController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Grid Builder/GridBuilder.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Enums/PublicEnums.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Block.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Bomb.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/LevelLoader.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/TouchController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/BlocksController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Grid Builder/Editor/GridBuilderEditor.cs" />
-        <option value="$PROJECT_DIR$/Assets/LevelTextFiles/Level1.txt" />
         <option value="$PROJECT_DIR$/Assets/Scripts/LevelReader/FileReader.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Block.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameController.cs" />
+        <option value="$PROJECT_DIR$/Assets/LevelTextFiles/Level1.txt" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/BlocksController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/BlockCreator.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GridController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Map.cs" />
       </list>
     </option>
   </component>
@@ -95,6 +95,17 @@
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="WindowStateProjectService">
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583083254359">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -164,18 +175,18 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="348" key="GridCell.Tab.3.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1583096793012" />
-    <state x="691" y="244" key="RiderGenerateDialog" timestamp="1582642624198">
+    <state x="691" y="244" key="RiderGenerateDialog" timestamp="1583156201933">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="691" y="244" key="RiderGenerateDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1582642624198" />
+    <state x="691" y="244" key="RiderGenerateDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1583156201933" />
     <state x="461" y="162" key="SettingsEditor" timestamp="1583094812205">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1583094812205" />
-    <state x="1949" y="0" width="1494" height="1027" key="dock-window-1" timestamp="1583152812684">
+    <state x="1949" y="0" width="1494" height="1027" maximized="true" key="dock-window-1" timestamp="1583152846899">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="1949" y="0" width="1494" height="1027" key="dock-window-1/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1583152812684" />
+    <state x="1949" y="0" width="1494" height="1027" maximized="true" key="dock-window-1/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1583152846899" />
     <state x="1912" y="-8" width="1502" height="1027" maximized="true" key="dock-window-2" timestamp="1583077174383">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>

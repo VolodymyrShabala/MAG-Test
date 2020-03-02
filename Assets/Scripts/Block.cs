@@ -82,7 +82,12 @@ public class Block : MonoBehaviour {
         SpriteRenderer.enabled = true;
     }
 
-    public bool CanBeSelected(BlockType blockType) {
+    // TODO: Look into this. Bad to have two function doing the same stuff
+    public bool CanBeSelected() {
+        return blockState == BlockState.Idle && !IsUnmovable();
+    }
+    
+    public bool CanBeSelectedWithColor(BlockType blockType) {
         return this.blockType == blockType && blockState == BlockState.Idle && !IsUnmovable();
     }
 
