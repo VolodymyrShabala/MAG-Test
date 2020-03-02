@@ -71,18 +71,18 @@ public class FileReader {
         int xLength = level.GetLength(0);
         int yLength = level.GetLength(1);
 
-        for (int x = 0; x < xLength; x++) {
-            for (int y = yLength - 1; y >= 0; y--) {
+        for (int x = xLength - 1; x >= 0; x--) {
+            for (int y = 0; y < yLength; y++) {
                 string coma = ",";
 
-                // if (y == 1) {
-                //     coma = "";
-                // }
+                if (y == yLength - 1) {
+                    coma = "";
+                }
 
-                content += $"{level[x, y]}" + coma;
+                content += $"{level[y, x]}" + coma;
             }
 
-            if (x == xLength - 1) {
+            if (x == 0) {
                 break;
             }
             content += "|\r\n";
