@@ -24,10 +24,10 @@
           <e p="Grid Builder" t="Include">
             <e p="GridBuilder.cs" t="Include" />
           </e>
-          <e p="GridController.cs" t="Include" />
           <e p="LevelReader" t="Include">
             <e p="FileReader.cs" t="Include" />
           </e>
+          <e p="MapController.cs" t="Include" />
           <e p="MapCreator.cs" t="Include" />
           <e p="MapData.cs" t="Include" />
           <e p="ScriptableObject" t="Include">

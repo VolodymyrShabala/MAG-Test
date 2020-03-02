@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Block : MonoBehaviour {
     [SerializeField] private float fallSpeed = 0.1f;
@@ -7,7 +6,6 @@ public class Block : MonoBehaviour {
     private BlockState blockState;
 
     private SpriteRenderer spriteRenderer;
-
     private SpriteRenderer SpriteRenderer {
         get {
             if (spriteRenderer != null)
@@ -82,7 +80,6 @@ public class Block : MonoBehaviour {
         SpriteRenderer.enabled = true;
     }
 
-    // TODO: Look into this. Bad to have two function doing the same stuff
     public bool CanBeSelected() {
         return blockState == BlockState.Idle && !IsUnmovable();
     }

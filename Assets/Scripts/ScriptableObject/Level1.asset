@@ -17,5 +17,6 @@ MonoBehaviour:
     type: 3}
   spawnOffset: 1
   cellSize: 1
+  amountOfSelectedBlocksToDestroy: 3
   width: 5
   height: 5

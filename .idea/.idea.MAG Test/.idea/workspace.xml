@@ -11,21 +11,22 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/MapCreator.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GridController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/LevelReader/FileReader.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../HeatMap/Assets/Scripts/CustomUtilities/CustomUtilities.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../HeatMap/Assets/Scripts/Grid2D.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Block.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/MapCreator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Editor/GridBuilderEditor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Grid Builder/GridBuilder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enums/PublicEnums.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../BeatBorn/2019_GP3_Team1/P3_beatBorn/BeatBornSGA/Assets/Scripts/SaveManager/SaveManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ScriptableObject/Scripts/GameConfig.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../BeatBorn/2019_GP3_Team1/P3_beatBorn/BeatBornSGA/Assets/Scripts/SaveManager/SaveData.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/MapController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Tower-Defence GitHub/Assets/Scripts/Object Pooling/ObjectManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Tower-Defence GitHub/Assets/Scripts/Object Pooling/ObjectPoolingManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/TouchController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/LevelReader/FileReader.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Bootstrap.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/BlockCreator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/MapData.cs" root0="FORCE_HIGHLIGHTING" />
@@ -55,19 +56,20 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Grid Builder/Editor/GridBuilderEditor.cs" />
         <option value="$PROJECT_DIR$/Assets/LevelTextFiles/Level1.txt" />
         <option value="$PROJECT_DIR$/Assets/Scripts/LevelReader/FileReader.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Block.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GridController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ScriptableObject/GameConfig.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/TouchController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BlocksController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BootsTrap.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Map.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ScriptableObject/Scripts/GameConfig.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Bootstrap.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/MapData.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/TouchController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MapCreator.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BlockCreator.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GridController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MapData.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MapController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Bootstrap.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Block.cs" />
       </list>
     </option>
   </component>
@@ -108,7 +110,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -187,10 +191,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="691" y="244" key="RiderGenerateDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1583161600497" />
-    <state x="461" y="162" key="SettingsEditor" timestamp="1583094812205">
+    <state x="461" y="162" key="SettingsEditor" timestamp="1583179162578">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="461" y="162" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1583094812205" />
+    <state x="461" y="162" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1583179162578" />
     <state x="1949" y="0" width="1494" height="1027" maximized="true" key="dock-window-1" timestamp="1583152846899">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>

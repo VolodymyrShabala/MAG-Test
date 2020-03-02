@@ -3,10 +3,14 @@ using UnityEngine;
 
 public class BlockCreator {
     private readonly MapData mapData;
+    private readonly float spawnOffset;
+    private readonly Block blockPrefab;
     private readonly Transform parent;
     
-    public BlockCreator(MapData mapData, Transform parent) {
+    public BlockCreator(MapData mapData, float spawnOffset, Block blockPrefab, Transform parent) {
         this.mapData = mapData;
+        this.spawnOffset = spawnOffset;
+        this.blockPrefab = blockPrefab;
         this.parent = parent;
 
         PopulateBoard(mapData.GetMapData());
@@ -34,11 +38,12 @@ public class BlockCreator {
     }
 
     private void SpawnBlock(int blockType, int x, int y, Block block = null) {
-        Vector3 gridPosition = mapData.GetWorldPosition(x, y) + mapData.GetPositionCorrection();
-        Vector3 spawnPosition = mapData.GetWorldPosition(x, mapData.GetHeight()) + mapData.GetPositionCorrection() + Vector3.up * mapData.GetSpawnOffset();
+        Vector3 gridPosition = mapData.GetWorldPosition(x, y);
+        Vector3 spawnPosition = mapData.GetWorldPosition(x, mapData.GetHeight()) + Vector3.up * spawnOffset;
 
         if (!block) {
-            block = Object.Instantiate(mapData.GetBlockPrefab(), parent);
+            block = Object.Instantiate(blockPrefab, parent);
+            block.name = $"Block {x}|{y}";
         }
 
         block.SetEnabled();
@@ -47,6 +52,4 @@ public class BlockCreator {
         block.SetBlockType((BlockType) blockType);
         mapData.SetNewBlock(block, x, y);
     }
-
-    
 }

@@ -5,11 +5,11 @@ public class TouchController : MonoBehaviour {
     private GameController gameController;
     private bool isSweeping;
 
-    private void Start() {
+    public void Init(GameController gameController) {
+        this.gameController = gameController;
         myCamera = Camera.main;
-        // gameController = FindObjectOfType<GameController>();
     }
-
+    
     private void Update() {
         if (Input.GetMouseButtonDown(0)) {
             isSweeping = true;

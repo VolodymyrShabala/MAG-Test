@@ -1,55 +1,20 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class GameController : MonoBehaviour{
-    private BlockCreator blockCreator;
-    private GridController gridController;
-    private Camera myCamera;
-    
+public class GameController {
+    private readonly BlockCreator blockCreator;
+    private readonly MapController mapController;
+
     private List<Block> selectedBlocks = new List<Block>();
     private BlockType blockInUse;
-    private int amountOfSelectedBlocksToDestroy;
+    private readonly int amountOfSelectedBlocksToDestroy;
     private bool isSweeping;
-    
-    public void Init(BlockCreator blockCreator, GridController gridController, int amountOfSelectedBlocksToDestroy) {
+
+    public GameController(BlockCreator blockCreator, MapController mapController, int amountOfSelectedBlocksToDestroy) {
         this.amountOfSelectedBlocksToDestroy = amountOfSelectedBlocksToDestroy;
         this.blockCreator = blockCreator;
-        this.gridController = gridController;
-        myCamera = Camera.main;
+        this.mapController = mapController;
     }
-    
-    private void Update() {
-        if (Input.GetMouseButtonDown(0)) {
-            isSweeping = true;
-        }
-
-        if (Input.GetMouseButtonUp(0)) {
-            isSweeping = false;
-            SweepEnd();
-        }
-
-        if (isSweeping) {
-            Swiping();
-        }
-    }
-    
-    private void Swiping() {
-        Vector3 mousePosition = myCamera.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
-
-        if (!hit.collider) {
-            return;
-        }
-
-        Block block = hit.collider.GetComponent<Block>();
-
-        if (!block) {
-            return;
-        }
-
-        SweepOverBlock(block);
-    }
-
 
     public void SweepOverBlock(Block block) {
         if (IsListEmpty()) {
@@ -87,26 +52,18 @@ public class GameController : MonoBehaviour{
     }
 
     public void SweepEnd() {
-        blockInUse = BlockType.MAX;
-
         int listCount = selectedBlocks.Count;
 
         if (listCount < amountOfSelectedBlocksToDestroy) {
             for (int i = 0; i < listCount; i++) {
                 selectedBlocks[i].Deselect();
             }
-
-            selectedBlocks = new List<Block>();
-            return;
+        } else {
+            mapController.HandleSweptBlocks(selectedBlocks);
+            blockCreator.RepopulateBoard(selectedBlocks);
         }
 
-        HandleSweepEnd();
-        selectedBlocks = new List<Block>();
-    }
-
-    private void HandleSweepEnd() {
-        gridController.HandleSweptBlocks(selectedBlocks);
-        blockCreator.RepopulateBoard(selectedBlocks);
+        Reset();
     }
 
     private bool IsListEmpty() {
@@ -143,5 +100,10 @@ public class GameController : MonoBehaviour{
         Vector3 blockPosition = block.transform.position;
         Vector3 neighbourBlockPosition = selectedBlocks[selectedBlocks.Count - 1].transform.position;
         return Mathf.Abs(Vector3.Distance(blockPosition, neighbourBlockPosition)) <= 1.5f;
+    }
+
+    private void Reset() {
+        blockInUse = BlockType.MAX;
+        selectedBlocks = new List<Block>();
     }
 }
