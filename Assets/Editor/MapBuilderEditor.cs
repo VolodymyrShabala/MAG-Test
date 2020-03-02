@@ -1,25 +1,25 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(GridBuilder))]
-public class GridBuilderEditor : Editor {
-    private GridBuilder grid;
+[CustomEditor(typeof(MapBuilder))]
+public class MapBuilderEditor : Editor {
+    private MapBuilder map;
     private int width;
     private int height;
     private float cellSize;
     private Vector3 gridPosition;
 
     private void OnEnable() {
-        grid = target as GridBuilder;
-        if (!grid) {
+        map = target as MapBuilder;
+        if (!map) {
             Debug.LogError($"There is something wrong in {name}");
             return;
         }
         
-        width = grid.height;
-        height = grid.height;
-        cellSize = grid.cellSize;
-        gridPosition = grid.transform.position;
+        width = map.height;
+        height = map.height;
+        cellSize = map.cellSize;
+        gridPosition = map.transform.position;
     }
 
     // Create buttons to load and save levels
@@ -27,11 +27,11 @@ public class GridBuilderEditor : Editor {
         DrawDefaultInspector();
 
         if (GUILayout.Button("Save level")) {
-            grid.SaveLevel();
+            map.SaveLevel();
         }
 
         if (GUILayout.Button("Load level")) {
-            grid.LoadLevel();
+            map.LoadLevel();
         }
     }
 
@@ -47,7 +47,7 @@ public class GridBuilderEditor : Editor {
             ChangeBlockType();
         }
 
-        Selection.activeGameObject = grid.gameObject;
+        Selection.activeGameObject = map.gameObject;
 
         DrawAllBlocks();
     }
@@ -58,7 +58,7 @@ public class GridBuilderEditor : Editor {
 
         for (int i = 0; i < numberOfBlocks; i++) {
             if (GUI.Button(new Rect(10, positionY, 125, 50), $"{(BlockType) i}")) {
-                grid.blockType = (BlockType) i;
+                map.blockType = (BlockType) i;
             }
 
             positionY += 60;
@@ -70,8 +70,8 @@ public class GridBuilderEditor : Editor {
     private void DrawGrid() {
         Handles.color = Color.red;
 
-        for (int x = 0; x < grid.width; x++) {
-            for (int y = 0; y < grid.height; y++) {
+        for (int x = 0; x < map.width; x++) {
+            for (int y = 0; y < map.height; y++) {
                 Handles.DrawLine(GetWorldPosition(x, y, cellSize, gridPosition),
                                  GetWorldPosition(x, y + 1, cellSize, gridPosition));
 
@@ -92,14 +92,14 @@ public class GridBuilderEditor : Editor {
         Vector2Int gridValue = GetXY(mousePosition, cellSize, gridPosition);
 
         if (IsWithingGrid(gridValue.x, gridValue.y, width, height)) {
-            grid.levelGrid[gridValue.x, gridValue.y] = (int) grid.blockType;
+            map.levelGrid[gridValue.x, gridValue.y] = (int) map.blockType;
         }
     }
 
     private void DrawAllBlocks() {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                Handles.color = GetBLockColor(grid.levelGrid[x, y]);
+                Handles.color = GetBLockColor(map.levelGrid[x, y]);
 
                 Handles.DrawWireCube(GetWorldPosition(x, y, cellSize, gridPosition) + new Vector3(cellSize * 0.5f, cellSize * 0.5f),
                                      Vector3.one);

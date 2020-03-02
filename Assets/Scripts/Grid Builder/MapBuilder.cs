@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 
 [ExecuteInEditMode]
-public class GridBuilder : MonoBehaviour {
+public class MapBuilder : MonoBehaviour {
     public BlockType blockType;
     public TextAsset levelFileTXT;
     
     [Header("Grid")]
-    public int width;
-    public int height;
-    public float cellSize;
+    public int width = 5;
+    public int height = 5;
+    public float cellSize = 2;
 
     public int[,] levelGrid;
 
