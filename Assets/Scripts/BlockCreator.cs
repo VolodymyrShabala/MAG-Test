@@ -29,7 +29,7 @@ public class BlockCreator {
     public void RepopulateBoard(List<Block> blocksToUse) {
         for (int x = 0; x < map.GetWidth(); x++) {
             for (int y = 0; y < map.GetHeight(); y++) {
-                if (map.GetBlockArray()[x, y]) {
+                if (map.GetBlock(x, y)) {
                     continue;
                 }
 
@@ -44,14 +44,14 @@ public class BlockCreator {
         Vector3 spawnPosition = map.GetWorldPosition(x, map.GetHeight()) + map.GetPositionCorrection() + Vector3.up * spawnOffset;
 
         if (!block) {
-            block = GameObject.Instantiate(blockPrefab, parent);
+            block = Object.Instantiate(blockPrefab, parent);
         }
 
         block.SetEnabled();
         block.transform.position = spawnPosition;
         block.MoveTo(gridPosition);
         block.SetBlockType((BlockType) blockType);
-        map.GetBlockArray()[x, y] = block;
+        map.SetNewBlock(block, x, y);
     }
 
     

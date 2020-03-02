@@ -26,16 +26,32 @@ public class Map {
         
         blocksArray = new Block[width, height];
     }
-
+    
     public Vector3 GetWorldPosition(int x, int y) {
         return new Vector3(x, y) * cellSize + originalPosition - new Vector3(width * 0.5f, height * 0.5f);
     }
     
-    public int GetWidth() => width;
-    public int GetHeight() => height;
-    public float GetCellSize() => cellSize;
-    public Vector3 GetPositionCorrection() => positionCorrection;
-    public Vector3 GetOriginalPosition() => originalPosition;
-    public int[,] GetMapData() => mapData;
-    public Block[,] GetBlockArray() => blocksArray;
+    public void SetNewBlock(Block block, int x, int y) {
+        blocksArray[x, y] = block;
+    }
+
+    public Block GetBlock(int x, int y) {
+        return blocksArray[x, y];
+    }
+    
+    public int GetWidth() {
+        return width;
+    }
+    
+    public int GetHeight() {
+        return height;
+    }
+
+    public Vector3 GetPositionCorrection() {
+        return positionCorrection;
+    }
+
+    public int[,] GetMapData() {
+        return mapData;
+    }
 }
